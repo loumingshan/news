@@ -24,7 +24,7 @@ SECRET_KEY = 'hfw2=^pw@l#+1q6x6j!tv1i*pm4ybzwahp+==%r!=5a6f91%v0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0','49.232.119.225']
 import pymysql
 pymysql.version_info = (1, 4, 0, "final", 0)
 pymysql.install_as_MySQLdb()
