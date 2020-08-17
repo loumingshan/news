@@ -53,9 +53,9 @@ def detail(request):
     one = News.objects.get(id=id)
     one.views += 1
     one.save()
-    has = HasView.objects.filter(user__unionid=unionid, news_id=id).first()
-    if not has:
-        HasView.objects.create(news_id=id, user=User.objects.filter(unionid=unionid).first())
+    # has = HasView.objects.filter(user__unionid=unionid, news_id=id).first()
+    # if not has:
+    #     HasView.objects.create(news_id=id, user=User.objects.filter(unionid=unionid).first())
     return JsonResponse({
         'code': 0,
         'data': one.to_dict(ext_props=['imgs'], exc_props=['images', 'status']),
