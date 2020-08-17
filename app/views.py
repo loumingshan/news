@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
 
-from app.models import Test, News, HasView, User
+from app.models import Test, News, HasView, User, Tag
 
 
 def hello(request):
@@ -19,6 +19,14 @@ def test(request):
         'code': '0000',
         'data': [a.to_dict() for a in articles],
         'msg': '获取文章列表成功'
+    })
+
+
+def tags(request):
+    return JsonResponse({
+        'code': 0,
+        'data': [a.name for a in Tag.objects.all()],
+        'msg': 'sucess'
     })
 
 
@@ -43,7 +51,7 @@ def detail(request):
     id = request.GET.get('id', '')
     unionid = request.GET.get('unionid', '')
     one = News.objects.get(id=id)
-    one.views +=1
+    one.views += 1
     one.save()
     has = HasView.objects.filter(user__unionid=unionid, news_id=id).first()
     if not has:

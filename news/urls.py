@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^$', views.hello),
     path('test', views.test),
     path('news', views.newsList),
+    path('tags', views.tags),
     path('recommend', views.recommend),
     path('detail', views.detail),
 ]

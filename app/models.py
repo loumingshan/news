@@ -7,9 +7,11 @@ from app.base import IdModel
 class Test(IdModel):
     name = models.CharField('名称', max_length=20)
 
+class Tag(IdModel):
+    name = models.CharField('标签分类', max_length=20)
 
 class User(IdModel):
-    unionid = models.CharField('百度unionid', max_length=64,unique=True,db_index=True)
+    unionid = models.CharField('百度unionid', max_length=255,unique=True,db_index=True)
 
 
 class Img(IdModel):
