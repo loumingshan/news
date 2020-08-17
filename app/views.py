@@ -58,7 +58,7 @@ def detail(request):
     #     HasView.objects.create(news_id=id, user=User.objects.filter(unionid=unionid).first())
     return JsonResponse({
         'code': 0,
-        'data': one.to_dict(ext_props=['imgs'], exc_props=['images', 'status']),
+        'data': one.to_dict(ext_props=['imgs','created_at_str'], exc_props=['images', 'status']),
         'msg': 'sucess'
     })
 
@@ -66,7 +66,7 @@ def detail(request):
 def recommend(request):
     unionid = request.GET.get('unionid', '')
     all = News.objects.exclude(
-        id__in=[v.news.id for v in HasView.objects.filter(user__unionid=unionid).all()]).order_by('-views').all()[0:10]
+        id__in=[v.news.id for v in HasView.objects.filter(user__unionid=unionid).all()]).order_by('-views').all()[0:6]
     return JsonResponse({
         'code': 0,
         'data': [a.to_dict(ext_props=['imgs'], exc_props=['images', 'content', 'status']) for a in all],
